@@ -8,8 +8,15 @@ func main() {
 	r.GET("/ping", Ping)
 	r.GET("/", Index)
 	r.GET("/test", Test)
+	r.GET("/hello/:name", Hello)
 	
 	r.Run(":8000")
+}
+
+func Hello(c *gin.Context) {
+	var name = c.Params.ByName("name")
+	var message = "Hello " + name
+	c.String(200, message)
 }
 
 func Ping(c *gin.Context) {
